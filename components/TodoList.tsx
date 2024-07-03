@@ -3,6 +3,6 @@ import { Todo } from './Todo'
 
 export const TodoList = ({ todos }) => {
     return (
-        <div>{todos.map((todo, i) => (<Todo key={i} todo={todo} />))}</div>
+        <div className="mb-3">{todos.map((todo, i) => (<Todo key={i} todo={todo} />))}</div>
     )
 }

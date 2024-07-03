@@ -9,7 +9,7 @@ export const Todo = ({ todo }) => {
 
     return (
         <div onClick={() => startTransition(() => completeTodo(todo.id))}
-            className={`border border-black/50 cursor-pointer ${todo.completed ? `line-through text-gray-700` : ``}`}>
+            className={`cursor-pointer text-sm ${todo.completed ? `line-through text-gray-700` : ``}`}>
             {todo.content}
         </div>
     )

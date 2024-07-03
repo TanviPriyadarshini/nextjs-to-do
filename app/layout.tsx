@@ -1,8 +1,13 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
+import { Oxygen } from 'next/font/google'
 import Link from 'next/link'
+import { MdOutlineHome } from "react-icons/md"
+import { CiBoxList } from "react-icons/ci";
 
-const inter = Inter({ subsets: ['latin'] })
+const oxygen = Oxygen({
+  subsets: ['latin'],
+  weight: '400'
+})
 
 export const metadata = {
   title: 'NextJS Todo App',
@@ -10,8 +15,8 @@ export const metadata = {
 }
 
 const links = [
-  { href: '/', label: 'Home' },
-  { href: '/todos', label: 'Todos' },
+  { href: '/', label: 'Home', icon: <MdOutlineHome /> },
+  { href: '/todos', label: 'Todos', icon: <CiBoxList /> },
 ]
 
 export default function RootLayout({
@@ -21,19 +26,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <header>
-          <nav>
-            <ul className="flex items-center justify-between ">
-              {links.map((link, i) => (
-                <li key={i}>
-                  <Link href={link.href}>{link.label}</Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </header>
-        <div>{children}</div>
+      <body className={`${oxygen.className} bg-stone-100`}>
+        <div className="grid grid-cols-[200px_auto] h-[100vh]">
+          <header>
+            <nav>
+              <ul className="flex flex-col gap-4 m-auto mt-2 rounded-lg p-4">
+                {links.map((link, i) => (
+                  <li className="text-md flex gap-2 items-center justify-start text-gray font-semibold" key={i}>
+                    {link.icon} <Link href={link.href}>{link.label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </header>
+          <div className="bg-white rounded-lg ml-4 mt-4 shadow-lg">{children}</div>
+        </div>
       </body>
 
     </html>
